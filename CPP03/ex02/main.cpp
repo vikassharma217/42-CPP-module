@@ -1,5 +1,6 @@
 # include "ClapTrap.hpp"
 # include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 # include <iostream>
 
 int	main(void)
@@ -12,13 +13,13 @@ int	main(void)
 	
 	std::cout<<std::endl<<std::endl;
 
-	/*ScavTrap object*/
-	ScavTrap scav1("Scav_1");
-	scav1.attack("Target_2");
-	scav1.takeDamage(4);
-	scav1.beRepaired(5);
+	/*FragTrap object*/
+	FragTrap frag1("Frag_1");
+	frag1.attack("Target_2");
+	frag1.takeDamage(4);
+	frag1.beRepaired(5);
 
-	scav1.guardGate();
+	frag1.highFivesGuys();
 
 	return (0);
 }
