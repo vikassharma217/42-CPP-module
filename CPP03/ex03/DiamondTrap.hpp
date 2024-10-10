@@ -11,9 +11,11 @@ class DiamondTrap : public ScavTrap, public FragTrap
         std::string _name;
 
     public:
-        /*Constructor and destrcutor*/
-        DiamondTrap(const std::string& name);
+        DiamondTrap(); //default constructor
+        DiamondTrap(const DiamondTrap& rhs); // copy constructor     
+        DiamondTrap(const std::string& name); // paremetrized constrcuotr
         ~DiamondTrap();
+        DiamondTrap& operator=(const DiamondTrap& rhs);
 
         //using ScavTrap::attack;
         void attack(const std::string& target);

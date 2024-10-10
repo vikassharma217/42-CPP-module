@@ -1,6 +1,35 @@
 # include "ClapTrap.hpp"
 # include <iostream>
 
+/*default constructor called*/
+ClapTrap::ClapTrap()
+{
+    _hitPoints = 10;
+    _energyPoints = 10;
+    _attackDamage = 0;
+    std::cout<< "ClapTrap default constructor called." << std::endl;
+}
+
+/*copy construcot*/
+ClapTrap::ClapTrap(const ClapTrap& rhs)
+{
+    *this = rhs;
+    std::cout << "ClapTrap copy constructor called." << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
+{
+    std::cout << "ClapTrap assignment operator called." << std::endl;
+    if (this != &rhs)
+    {
+        _name = rhs._name;
+        _hitPoints = rhs._hitPoints;
+        _energyPoints = rhs._energyPoints;
+        _attackDamage = rhs._attackDamage;
+    }
+    return (*this);
+}
+
 ClapTrap::ClapTrap(const std::string& name)
 {
     _name = name;
@@ -16,6 +45,8 @@ ClapTrap::~ClapTrap()
    std::cout << "ClapTrap destructor has destructed "
             <<_name << std::endl;
 }
+
+
 /*function to attack, cost one energy point*/
  void ClapTrap::attack(const std::string& target)
  {

@@ -7,8 +7,11 @@
 class ScavTrap : public virtual ClapTrap
 {
     public:
-        ScavTrap(const std::string& name);
-        ~ScavTrap();
+        ScavTrap(); // default constructor
+        ScavTrap(const ScavTrap& rhs); // copy constructor
+        ScavTrap(const std::string& name); // paremetarized constructor
+        ~ScavTrap(); // default destructor
+        ScavTrap& operator=(const ScavTrap& rhs); // copy assignment operator
 
         /*ScavTrap custom attack method*/
         void attack(const std::string& target);

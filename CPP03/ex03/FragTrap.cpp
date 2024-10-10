@@ -1,6 +1,34 @@
 # include "FragTrap.hpp"
 # include <iostream>
 
+/*default constructor*/
+FragTrap::FragTrap() : ClapTrap()
+{
+   std::cout << "FragTrap default constrcutor called" << std::endl;
+}
+
+/*copy constructor*/
+FragTrap::FragTrap(const FragTrap &rhs) : ClapTrap(rhs)
+{
+   *this = rhs;
+   std::cout << "FragTrap copy constructor called" << std::endl;   
+}
+
+/*copy assignment operato*/
+FragTrap &FragTrap::operator=(const FragTrap &rhs)
+{
+	std::cout << "FragTrap Assignation operator" << std::endl;
+	if (this != &rhs)
+	{
+		ClapTrap::operator=(rhs);
+		_hitPoints = rhs._hitPoints;
+		_energyPoints = rhs._energyPoints;
+		_attackDamage = rhs._attackDamage;
+	}
+	return (*this);
+}
+
+/*paremetrized constructor*/
 FragTrap::FragTrap(const std::string& name) :ClapTrap(name)
 {
     _hitPoints = 100;

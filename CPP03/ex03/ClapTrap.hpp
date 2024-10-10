@@ -12,9 +12,11 @@ class ClapTrap
         int _attackDamage;
     
     public:
-        //ClapTrap();
-        ClapTrap(const std::string& name);
-        ~ClapTrap();
+        ClapTrap(); //default constrcuto
+        ClapTrap(const std::string& name); // paremetarized constructor
+        ClapTrap(const ClapTrap& rhs); // copy constructor
+        ClapTrap& operator=(const ClapTrap& rhs); // copy assignment operator
+        ~ClapTrap(); // default destructor
 
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);

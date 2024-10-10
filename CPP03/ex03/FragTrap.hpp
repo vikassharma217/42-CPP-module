@@ -7,8 +7,11 @@
 class FragTrap : public virtual ClapTrap
 {
     public:
-        FragTrap(const std::string& name);
+        FragTrap(); // default constrcutor
+        FragTrap(const FragTrap& rhs); // copy constructor
+        FragTrap(const std::string& name); // paremetarized constrcutor
         ~FragTrap();
+        FragTrap& operator=(const FragTrap& rhs); // copy assignment operator
 
         /*FragTrap custom attack method*/
         void attack(const std::string& target);
