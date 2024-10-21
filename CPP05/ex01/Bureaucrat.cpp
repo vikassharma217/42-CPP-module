@@ -1,4 +1,5 @@
 # include "Bureaucrat.hpp"
+# include "Form.hpp"
 
 /* basic requirments*/
 Bureaucrat::Bureaucrat()
@@ -85,4 +86,26 @@ std::ostream& operator<<(std::ostream & out, const Bureaucrat &b)
 {
     out << b.getName() << ", bureaucrat  grade " << b.getGrade();
     return (out);
+}
+
+
+/*function to print the form signed status*/
+void Bureaucrat::signForm(Form f)
+{
+    if (f.isSigned())  // Use the getter function to check if the form is signed
+    {
+        std::cout << _name << " can't sign " << f.getName() << " because it's already signed." << std::endl;
+        return;
+    }
+
+    try
+    {
+        f.beSigned(*this);  // Attempt to sign the form
+        std::cout << _name << " signed " << f.getName() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << _name << " couldn't sign " << f.getName()
+                  << " because " << e.what() << std::endl;
+    }
 }

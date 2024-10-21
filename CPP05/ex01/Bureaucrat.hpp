@@ -1,6 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+# include "Form.hpp"
 # include <exception>
 # include <iostream>
 # include <string>
@@ -37,6 +38,10 @@ class Bureaucrat
 		public:
 		const char *what() const throw();
 	};
+	
+	/*additional memeber function*/
+	 void signForm(Form f);
+	 //void executeForm(Form f);
 };
 
 /* overlaod insertion (<<) operator*/

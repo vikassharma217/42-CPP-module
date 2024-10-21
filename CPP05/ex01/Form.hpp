@@ -1,8 +1,10 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 
-# include "Bureaucrat.hpp"
 # include <iostream>
+
+
+class Bureaucrat;
 
 class Form
 {
@@ -38,10 +40,7 @@ class Form
     int getGradeExecute() const;
 
     /*member function to sign the form*/
-    void beSigned(Bureaucrat b);
-    void signForm(Bureaucrat b);
-
-
+    void beSigned(Bureaucrat& b);
 
 };
 

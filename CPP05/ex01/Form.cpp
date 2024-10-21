@@ -1,4 +1,5 @@
 # include "Form.hpp"
+# include "Bureaucrat.hpp"
 
 /*default constructor*/
 Form::Form():
@@ -18,6 +19,7 @@ Form::Form(std::string name, int gradeSign, int gradeExecute):
         _gradeSign(gradeSign),
         _gradeExecute(gradeExecute)
 {
+    std::cout << "Constructor for Form init." << std::endl;
     if (gradeSign < 1 || gradeExecute < 1)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExecute > 150)
@@ -84,36 +86,32 @@ int Form::getGradeExecute() const
 }
 
 /*fucntion to signed the form depend upon passed bereaucrated grade */
-void Form::beSigned(Bureaucrat b)
+void Form::beSigned(Bureaucrat& b)
 {
+    if (_signed)
+    {
+        std::cout << "Form " << _name << " is already signed." << std::endl;
+        return;
+    }
+
     if (b.getGrade() > _gradeSign)
-        throw (GradeTooLowException());
+    {
+        throw GradeTooLowException();
+    }
+
     _signed = true;
 }
 
-/*function to print the form signed status*/
-void Form::signForm(Bureaucrat b)
-{
-    try
-    {
-        beSigned(b);
-        std::cout << b.getName() << " signed "<< _name << std::endl;     
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << b.getName() << "  couldn't sign "<< _name 
-            << " beacause "<< e.what() << std::endl;
-    }
-    
-}
+
 
 /*overload << operator*/
 
 std::ostream& operator<<(std::ostream &out, const Form &f)
 {
-    out << "Form: " <<f.getName() << std::endl 
-        << "Sign Grade: " << f.getGradeSign() << std::endl
-        << "Execute Grade: " << f.getGradeExecute() << std::endl 
-        << "Sign status: "<< (f.isSigned() ? "Yes" : "No"); 
+    out << "\033[34m"<< "Forms Info:: Name: " <<f.getName() 
+        << ", Sign Grade: " << f.getGradeSign()
+        << ", Execute Grade: " << f.getGradeExecute()
+        << ", Sign status: "<< (f.isSigned() ? "Yes" : "No")
+        << "\033[0m"; 
     return (out);
 }

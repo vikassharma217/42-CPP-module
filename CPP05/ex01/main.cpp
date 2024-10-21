@@ -5,24 +5,31 @@
 
 int main ()
 {
-    Form f1("F1", 10, 5);
+    // Form f1("F1", 10, 5);
+    // Bureaucrat b1 ("b1", 1);
+    // b1.signForm(f1);
+    // f1.beSigned(b1);
+    // std::cout << f1 << std::endl;
+
+
+    Form f2("F2", 2, 2);
+    Bureaucrat b2 ("b2",3);
+    
+    try
+    {
+        b2.signForm(f2);
+        f2.beSigned(b2);
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    
+    std::cout << f2 << std::endl;
 
 
     return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // /*int main ()
 // {
