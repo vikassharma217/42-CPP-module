@@ -12,14 +12,15 @@ class Bureaucrat
 	int _grade;
 
   public:
-	Bureaucrat();
-	Bureaucrat(const Bureaucrat &rhs);
+	Bureaucrat(); // defaut constructor
+	Bureaucrat(const std::string& name, int grade); // constructor with init list
+	Bureaucrat(const Bureaucrat &rhs); // copy constructor
 	Bureaucrat &operator=(const Bureaucrat &rhs);
 	~Bureaucrat();
 
 	/*getters*/
-	std::string getName();
-	int getGrade();
+	std::string getName() const;
+	int getGrade() const;
 
 	/*member function to increament and decrement grade*/
 	void gradeIncreament();

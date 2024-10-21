@@ -1,0 +1,7 @@
+
+
+ex00:
+
+
+    const private type member variabel must be initilized at construction and cannot be 
+    reassigned later. (not even in copy constructor or assignment operator)
