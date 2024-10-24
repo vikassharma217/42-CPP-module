@@ -10,17 +10,12 @@ private:
     std::string _target;
 
 public:
-    // Constructor
-    RobotomyRequestForm(const std::string &target);
-    
-    // Copy Constructor
-    RobotomyRequestForm(const RobotomyRequestForm &other);
-    
-    // Assignment Operator
-    RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-    
-    // Destructor
-    ~RobotomyRequestForm();
+
+    RobotomyRequestForm(); // default construtotr
+    RobotomyRequestForm(const std::string &target); // Parametrized Constructor
+    RobotomyRequestForm(const RobotomyRequestForm &rhs); // Copy Constructor
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs); // Assignment Operator
+    ~RobotomyRequestForm(); // Destructor
 
     // Execute the form
     void execute(Bureaucrat const &executor) const;

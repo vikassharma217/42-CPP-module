@@ -14,7 +14,8 @@ class Bureaucrat
 
   public:
 	Bureaucrat(); // defaut constructor
-	Bureaucrat(const std::string& name, int grade); // constructor with init list
+	Bureaucrat(const std::string &name, int grade);
+	// constructor with init list
 	Bureaucrat(const Bureaucrat &rhs); // copy constructor
 	Bureaucrat &operator=(const Bureaucrat &rhs);
 	~Bureaucrat();
@@ -38,19 +39,13 @@ class Bureaucrat
 		public:
 		const char *what() const throw();
 	};
-	
+
 	/*additional memeber function*/
-	 void signForm(Form f);
-	 //void executeForm(Form f);
+	void signForm(Form &f);
+	// void executeForm(Form f);
 };
 
 /* overlaod insertion (<<) operator*/
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
-
-/*unit test*/
-	void testBureaucratCreation();
-    void testGradeIncreament();
-    void testGradeDecrement();
-    void testInvalidBureaucratCreation();
 
 #endif

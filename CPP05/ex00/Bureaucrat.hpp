@@ -12,9 +12,9 @@ class Bureaucrat
 	int _grade;
 
   public:
-	Bureaucrat(); // defaut constructor
-	Bureaucrat(const std::string& name, int grade); // constructor with init list
-	Bureaucrat(const Bureaucrat &rhs); // copy constructor
+	Bureaucrat();                                   
+	Bureaucrat(const std::string &name, int grade); 
+	Bureaucrat(const Bureaucrat &rhs);              
 	Bureaucrat &operator=(const Bureaucrat &rhs);
 	~Bureaucrat();
 
@@ -41,11 +41,5 @@ class Bureaucrat
 
 /* overlaod insertion (<<) operator*/
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &b);
-
-/*unit test*/
-	void testBureaucratCreation();
-    void testGradeIncreament();
-    void testGradeDecrement();
-    void testInvalidBureaucratCreation();
 
 #endif

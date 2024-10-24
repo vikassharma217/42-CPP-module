@@ -4,7 +4,7 @@
 /* basic requirments*/
 Bureaucrat::Bureaucrat()
 {
-    std::cout << "Default constructor." << std::endl; 
+    // std::cout << "Default constructor." << std::endl; 
 }
 
 /*constructor with init list as private member _name is const type*/
@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) :
             _name(name),
             _grade(grade)
 {
-    std::cout << "Constructor for " << name << std::endl;
+    // std::cout << "Constructor for " << name << std::endl;
     if (grade < 1)
         throw GradeTooHighException();
     else if (grade > 150)
@@ -24,14 +24,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat &rhs) :
     _name(rhs._name),
     _grade(rhs._grade)
 {
-    std::cout << "Copy constructor." << std::endl;
+    // std::cout << "Copy constructor." << std::endl;
 }
 
 /*assignment operator*: 
     can not assogne const member _name    */
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
-    std::cout << "Assignment operator." << std::endl;
+    // std::cout << "Assignment operator." << std::endl;
     if (this != &rhs)
         _grade = rhs._grade;
     return (*this);
@@ -39,7 +39,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Destructor." << _name << std::endl;
+    // std::cout << "Destructor." << _name << std::endl;
 }
 
 /*getter method implementatiton*/
@@ -73,12 +73,12 @@ void Bureaucrat::gradeDecreament()
 /*exception handling methods*/
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("Grade is too high!");
+    return ("Bureaucrat Grade is too high!");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("Grade is too low!");
+    return ("Bureaucrat Grade is too low!");
 }
 
 /*operator << overloading*/
@@ -90,7 +90,7 @@ std::ostream& operator<<(std::ostream & out, const Bureaucrat &b)
 
 
 /*function to print the form signed status*/
-void Bureaucrat::signForm(Form f)
+void Bureaucrat::signForm(Form &f)
 {
     if (f.isSigned())  // Use the getter function to check if the form is signed
     {

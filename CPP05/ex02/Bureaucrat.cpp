@@ -73,12 +73,12 @@ void Bureaucrat::gradeDecreament()
 /*exception handling methods*/
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("Grade is too high!");
+    return ("Bureaucrat Grade is too high!");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("Grade is too low!");
+    return ("Bureaucrat Grade is too low!");
 }
 
 /*operator << overloading*/

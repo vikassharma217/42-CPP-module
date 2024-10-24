@@ -1,61 +1,67 @@
 #include "Intern.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include <iostream>
 
 /* Default Constructor */
 Intern::Intern()
 {
-    std::cout << "Intern created." << std::endl;
+	// std::cout << "Intern created." << std::endl;
 }
 
 /* Copy Constructor */
-Intern::Intern(const Intern &other)
+Intern::Intern(const Intern &rhs)
 {
-    (void)other;
-    std::cout << "Intern copied." << std::endl;
+	(void)rhs;
+	// std::cout << "Intern copied." << std::endl;
 }
 
 /* Assignment Operator */
-Intern &Intern::operator=(const Intern &other)
+Intern &Intern::operator=(const Intern &rhs)
 {
-    (void)other;
-    std::cout << "Intern assigned." << std::endl;
-    return *this;
+	// std::cout << "Intern assigned." << std::endl;
+	(void)rhs;
+	return (*this);
 }
 
 /* Destructor */
 Intern::~Intern()
 {
-    std::cout << "Intern destroyed." << std::endl;
+	// std::cout << "Intern destroyed." << std::endl;
 }
 
 /* makeForm function */
-AForm* Intern::makeForm(const std::string &formName, const std::string &target)
+
+AForm *Intern::makeForm(std::string formName, std::string target)
 {
-    AForm* forms[] = {
-        new ShrubberyCreationForm(target),
-        new RobotomyRequestForm(target),
-        new PresidentialPardonForm(target)
-    };
+	std::string forms[3] = {
+		"shrubbery creation", 
+		"robotomy request",
+		"presidential pardon"};
 
-    std::string formNames[] = {
-        "shrubbery creation",
-        "robotomy request",
-        "presidential pardon"
-    };
+	int result = -1;
+	for (int i = 0; i < 3; i++)
+	{
+		if (formName.compare(forms[i]) == 0)
+		{
+			result = i;
+			break ;
+		}
+	}
 
-    for (int i = 0; i < 3; i++)
-    {
-        if (formName == formNames[i])
-        {
-            std::cout << "Intern creates " << formNames[i] << std::endl;
-            return forms[i];
-        }
-        delete forms[i];  // If not selected, delete to avoid memory leak
-    }
-
-    std::cout << "Error: Form name not found." << std::endl;
-    return NULL;  // Return NULL as `nullptr` is not available in C++98
+	switch (result)
+	{
+	case 0:
+        std::cout << "Inter creates " << formName << std::endl;
+		return (new ShrubberyCreationForm(target));
+	case 1:
+        std::cout << "Inter creates " << formName << std::endl;
+		return (new RobotomyRequestForm(target));
+	case 2:
+        std::cout << "Inter creates " << formName << std::endl;
+		return (new PresidentialPardonForm(target));
+	default:
+		throw std::runtime_error("Error: Invalid Form");
+	}
 }

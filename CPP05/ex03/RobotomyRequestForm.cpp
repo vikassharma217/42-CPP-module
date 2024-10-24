@@ -13,9 +13,9 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &target) :
 }
 
 /*copy constructor*/
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : 
-    AForm(other), 
-    _target(other._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs) : 
+    AForm(rhs), 
+    _target(rhs._target)
 {
     // std::cout << "Robotomy copy constructor." << std::endl;
 }
@@ -40,24 +40,21 @@ RobotomyRequestForm::~RobotomyRequestForm()
 /*execute method for robotomy*/
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-    // Check if form is signed
-    if (!isSigned())
-        throw AForm::FormProceededException();
+	if (!isSigned())
+		throw AForm::FormProceededException();
 
-    // Check if executor has the grade to execute
-    if (executor.getGrade() > getGradeExecute())
-        throw AForm::GradeTooLowException();
+	if (executor.getGrade() > getGradeExecute())
+		throw AForm::GradeTooLowException();
 
-    // Simulate robotomy
-    std::cout << "===>===>DRILLING===>*" << std::endl;
-    
-    // Randomly determine success or failure (50% chance)
-    if (std::rand() % 2 == 0)
-    {
-        std::cout << _target << " has been robotomized succesfully!" << std::endl;
-    }
-    else
-    {
-        std::cout << _target << " has failed the Robotomy!" << std::endl;
-    }
+	std::cout << "\033[31m===>===>DRILLING===>\033[0m" << std::endl;
+
+	// Randomly determine success or failure (50% chance)
+	if (std::rand() % 2 == 0)
+	{
+		std::cout << _target << " has been robotomized succesfully!" << std::endl;
+	}
+	else
+	{
+		std::cout << _target << " has failed the Robotomy!" << std::endl;
+	}
 }

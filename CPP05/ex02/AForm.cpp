@@ -90,15 +90,28 @@ void AForm::beSigned(const Bureaucrat& b)
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-    return ("Grade is too high!");
+    return ("Form sign/execution Grade is too high!");
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-    return ("Grade is too low!");
+    return ("Form sign/execution Grade is too low!");
 }
 
 const char *AForm::FormProceededException::what() const throw()
 {
     return ("Form is not Proceeded!");
+}
+
+
+/*overload << operator*/
+
+std::ostream &operator<<(std::ostream &out, const AForm &f)
+{
+	out << "\033[34m"
+		<< "Forms Info:: Name: " << f.getName() <<
+			", Sign Grade: " << f.getGradeSign() <<
+			", Execute Grade: " << f.getGradeExecute() <<
+			", Sign status: " << (f.isSigned() ? "Yes" : "No") << "\033[0m";
+	return (out);
 }

@@ -1,6 +1,6 @@
 NAME = bureaucrat
 
-SRC = main.cpp Bureaucrat.cpp test.cpp
+SRC = main.cpp Bureaucrat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

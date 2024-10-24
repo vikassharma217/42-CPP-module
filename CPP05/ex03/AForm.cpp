@@ -103,11 +103,14 @@ const char *AForm::FormProceededException::what() const throw()
     return ("Form is not Proceeded!");
 }
 
-std::ostream &operator<<(std::ostream &out, const AForm &form)
+/*overload << operator*/
+
+std::ostream &operator<<(std::ostream &out, const AForm &f)
 {
-    out << "Form Name: " << form.getName() << "\n"
-        << "Signed: " << (form.isSigned() ? "Yes" : "No") << "\n"
-        << "Grade required to sign: " << form.getGradeSign() << "\n"
-        << "Grade required to execute: " << form.getGradeExecute() << std::endl;
-    return out;
+	out << "\033[34m"
+		<< "Forms Info:: Name: " << f.getName() <<
+			", Sign Grade: " << f.getGradeSign() <<
+			", Execute Grade: " << f.getGradeExecute() <<
+			", Sign status: " << (f.isSigned() ? "Yes" : "No") << "\033[0m";
+	return (out);
 }

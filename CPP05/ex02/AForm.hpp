@@ -54,4 +54,7 @@ class AForm
         };
 };
 
+/*overload insertion << operator*/
+std::ostream &operator<<(std::ostream &out, const AForm &f);
+
 #endif

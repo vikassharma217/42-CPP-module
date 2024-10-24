@@ -14,10 +14,10 @@ public:
     RobotomyRequestForm(const std::string &target);
     
     // Copy Constructor
-    RobotomyRequestForm(const RobotomyRequestForm &other);
+    RobotomyRequestForm(const RobotomyRequestForm &rhs);
     
     // Assignment Operator
-    RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
     
     // Destructor
     ~RobotomyRequestForm();
