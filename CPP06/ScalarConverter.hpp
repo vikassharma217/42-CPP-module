@@ -1,22 +1,33 @@
 #ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
-# include "iostream"
+#include <string>
 
-class ScalarConverter
+class ScalarConverter 
 {
-    /*moved constructor.... in  private to prevent instatite the class*/
-    private:
-        ScalarConverter();
-        ScalarConverter(const ScalarConverter &rhs);
-        ScalarConverter &operator=(const ScalarConverter &rhs);
-        ~ScalarConverter();
+public:
+    // static method for conversion
+    static void convert(const std::string &input);
 
-    public:
-        /*method to conver*/
-        static void convert(std::string input);
-        static void outputChar;
-        
+    
+private:
+    /*move constructor and destructor to private to 
+        prevent instantiation*/
+    ScalarConverter();
+    ScalarConverter(const ScalarConverter &rhs);
+    ScalarConverter &operator=(const ScalarConverter &rhs);
+    ~ScalarConverter();
+
+public:
+    /*nested helper class for conversion*/
+    class ConverterUtils
+    {
+        public:
+            int ftStoi (const std::string &input);
+            float ftStof (const std::string &input);
+            double ftStod (const std::string &input);
+            char ftStoc (const std::string &input);
+    };
 };
 
 #endif
