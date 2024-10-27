@@ -6,6 +6,7 @@
 # include <climits>
 # include <limits>
 
+/*constructor and destructors*/
 ScalarConverter::ScalarConverter() 
 {
 }
@@ -20,78 +21,98 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
+
+/*main covert function,  handel special cases for nan, inf etc.,*/
 void ScalarConverter::convert(const std::string &input)
 {
-    ConverterUtils utils;  //utils class for conversion method
-    /*char conversion: call stoi to try to covert input in ASCII dec value
-    throw invalid_argument if out of range , else convert to char using 
-    static_cast*/
-    try 
+    /*instatialte util class for conversion utils*/
+    ConverterUtils utils;
+
+    /* Handle single character input directly and cast into dec rep from ASCII table*/
+    if (input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0])) 
     {
-        int intValue = utils.ftStoi(input);
-        if (intValue < 32 || intValue > 126)
-        {
-            throw std::invalid_argument("Non displayable");
-        }
-        char charValue = static_cast<char>(intValue);
+        char charValue = input[0];
+        int intValue = static_cast<int>(charValue); 
+        float floatValue = static_cast<float>(intValue);
+        double doubleValue = static_cast<double>(intValue);
+
         std::cout << "char: '" << charValue << "'" << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "char: " << e.what() << std::endl;
-    }
-
-    /*integer conversion: */
-    try
-    {
-        int intValue = utils.ftStoi(input);
         std::cout << "int: " << intValue << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "int: " << e.what () << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+        std::cout << "double: " << doubleValue << std::endl;
+        return;
     }
 
-    /*float conversion*/
-    try
+      // Handle special cases for nan and infinity
+    if (input == "nan" || input == "nanf") 
     {
-        float floatValue;
-        if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
-            floatValue = utils.ftStof(input);
-        else
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+        return;
+    }
+    if (input == "-inf" || input == "-inff") 
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+        return;
+    }
+    if (input == "+inf" || input == "+inff" || input == "inf" || input == "inff") 
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: inff" << std::endl;
+        std::cout << "double: inf" << std::endl;
+        return;
+    }
+
+// Conversion for standard numeric input
+   try 
+   {
+        double doubleValue = utils.ftStod(input); // convert to double
+        float floatValue = utils.ftStof(input);   // conver to flaot
+
+        // Char and int conversion based on double conversion
+        if (doubleValue >= INT_MIN && doubleValue <= INT_MAX) 
         {
-            std::stringstream ss(input);
-            ss >> floatValue;
-            if (ss.fail() || !ss.eof())
-                throw std::invalid_argument("impossible");
-        }
-        std::cout << std::fixed << std::setprecision(1) << "float: " << floatValue << "f" << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "float:" <<e.what() << std::endl;
-    }
+            int intValue = static_cast<int>(doubleValue);
+            if (intValue >= 32 && intValue <= 126) 
+            {
+                std::cout << "char: '" << static_cast<char>(intValue) << "'" << std::endl;
+            } 
+            else 
+            {
+                std::cout << "char: Non displayable" << std::endl;
+            }
 
-        /*Double conversion: */
-    try 
-    {
-        double doubleValue;
-        if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf") {
-            doubleValue = utils.ftStod(input);
+            // Integer output
+            std::cout << "int: " << intValue << std::endl;
         } 
         else 
         {
-            std::stringstream ss(input);
-            ss >> doubleValue;
-            if (ss.fail() || !ss.eof()) throw std::invalid_argument("impossible");
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
         }
-        std::cout << std::fixed << std::setprecision(1) << "double: " << doubleValue << std::endl;
+
+        // Float output
+        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
+
+        // Double output
+        std::cout << "double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
+
     } 
     catch (const std::exception &e) 
     {
-        std::cerr << "double: " << e.what() << std::endl;
+        std::cerr << "char: impossible" << std::endl;
+        std::cerr << "int: impossible" << std::endl;
+        std::cerr << "float: impossible" << std::endl;
+        std::cerr << "double: impossible" << std::endl;
     }
 }
+    
 
 /*helper function for stoi ,stod & stof*/
 
@@ -108,37 +129,41 @@ int ScalarConverter::ConverterUtils::ftStoi(const std::string &input)
     return (value);
 }
 
-float ScalarConverter::ConverterUtils::ftStof(const std::string &input) {
-    if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf") {
-        return std::numeric_limits<float>::quiet_NaN();
+
+float ScalarConverter::ConverterUtils::ftStof(const std::string &input) 
+{
+    std::string modifiedInput = input;
+    if (!modifiedInput.empty() && modifiedInput[modifiedInput.size() - 1] == 'f') 
+    {
+        modifiedInput.resize(modifiedInput.size() - 1);  // Remove the 'f'
     }
-    std::istringstream iss(input);
+    std::istringstream iss(modifiedInput);
     float value;
     iss >> value;
-    if (iss.fail() || !iss.eof()) {
+    if (iss.fail() || !iss.eof()) 
+    {
         throw std::invalid_argument("impossible");
     }
     return value;
 }
 
-double ScalarConverter::ConverterUtils::ftStod(const std::string &input) {
-    if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf") {
-        return std::numeric_limits<double>::quiet_NaN();
+double ScalarConverter::ConverterUtils::ftStod(const std::string &input) 
+{
+    std::string modifiedInput = input;
+
+    if (!modifiedInput.empty() && modifiedInput[modifiedInput.size() - 1] == 'f') 
+    {
+        modifiedInput.resize(modifiedInput.size() - 1);  // Remove the 'f'
     }
-    std::istringstream iss(input);
+
+    std::istringstream iss(modifiedInput);
     double value;
     iss >> value;
-    if (iss.fail() || !iss.eof()) {
+
+    if (iss.fail() || !iss.eof()) 
+    {
         throw std::invalid_argument("impossible");
     }
+
     return value;
 }
-
-char ScalarConverter::ConverterUtils::ftStoc(const std::string &input) {
-    int intValue = ftStoi(input);
-    if (intValue < 32 || intValue > 126) {
-        throw std::invalid_argument("Non displayable");
-    }
-    return static_cast<char>(intValue);
-}
-

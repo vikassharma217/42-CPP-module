@@ -1,4 +1,4 @@
-NAME = scalar
+NAME = convert
 SRC = ScalarConverter.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = c++
