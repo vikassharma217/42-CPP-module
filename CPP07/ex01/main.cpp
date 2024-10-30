@@ -8,28 +8,34 @@ void printElement(const T &element)
     std::cout << element << " ";
 }
 
-/*testing function to increament int type arr*/
+/*testing function to multiply by 2 int type arr*/
 template <typename T>
-void incrementElement(T &element) 
+void twosMultiple(T &element) 
 {
-    ++element;
+    element = element * 2;
 }
 
 int main() 
 {
     int arr[] = {1, 2, 3, 4, 5};
-    std::string strArr[] = {"Hello", "C++", "Templates"};
+    std::string strArr[] = {"Hello", "World", "!"};
+    const int constarr[] = {2, 4, 6, 8, 10};
 
     std::cout << "Original int array: ";
     iter(arr, 5, printElement<int>);
-    std::cout << "\nIncremented int array: ";
-    iter(arr, 5, incrementElement<int>);
+    std::cout << std::endl;
+    std::cout << "Multiply by two: ";
+    iter(arr, 5, twosMultiple<int>);
     iter(arr, 5, printElement<int>);
-    std::cout << "\n";
+    std::cout << std::endl;
 
     std::cout << "String array: ";
     iter(strArr, 3, printElement<std::string>);
-    std::cout << "\n";
+    std::cout << std::endl;
+
+    std::cout << "Const int array: ";
+    iter(constarr, 3, printElement<int>);
+    std::cout << std::endl;
 
     return 0;
 }
