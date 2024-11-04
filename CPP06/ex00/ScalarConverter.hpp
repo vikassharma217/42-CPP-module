@@ -25,7 +25,6 @@ class ScalarConverter
 		int ftStoi(const std::string &input);
 		float ftStof(const std::string &input);
 		double ftStod(const std::string &input);
-		char ftStoc(const std::string &input);
 	};
 };
 

@@ -1,16 +1,20 @@
 #include "Utils.hpp"
+#include <cstdlib> // for rand()
+#include <ctime>
 #include <iostream>
 
-int main() {
-    std::srand(static_cast<unsigned int>(std::time(0)));
+int	main(void)
+{
+	std::srand(static_cast<unsigned int>(std::time(0)));
 
-    Base* obj = generate();
-    std::cout << "Identify by pointer: ";
-    identify(obj);
+	Base *o1 = generate();
+	std::cout << "Identify by pointer: " << std::endl;
+	identify(o1);
 
-    std::cout << "Identify by reference: ";
-    identify(*obj);
+	std::cout << "Identify by reference: " << std::endl;
+	identify(*o1);
 
-    delete obj; // Clean up the dynamically allocated object
-    return 0;
+	delete o1;
+ 
+	return (0);
 }

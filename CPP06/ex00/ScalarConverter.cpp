@@ -10,11 +10,13 @@
 ScalarConverter::ScalarConverter()
 {
 }
-ScalarConverter::ScalarConverter(const ScalarConverter &)
+ScalarConverter::ScalarConverter(const ScalarConverter &rhs)
 {
+	(void)rhs;
 }
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &)
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 {
+	(void)rhs;
 	return (*this);
 }
 ScalarConverter::~ScalarConverter()
@@ -29,17 +31,16 @@ void ScalarConverter::convert(const std::string &input)
 	int				intValue;
 	float			floatValue;
 	double			doubleValue;
-	int				intValue;
 
 	/*instatialte util class for conversion utils*/
-	/* Handle single character input directly and cast into dec rep from ASCII table*/
+	/* Handle single character input directly and cast into decimal rep from ASCII table*/
 	if (input.length() == 1 && std::isprint(input[0])
 		&& !std::isdigit(input[0]))
 	{
 		charValue = input[0];
 		intValue = static_cast<int>(charValue);
-		floatValue = static_cast<float>(intValue);
-		doubleValue = static_cast<double>(intValue);
+		floatValue = static_cast<float>(charValue);
+		doubleValue = static_cast<double>(charValue);
 		std::cout << "char: '" << charValue << "'" << std::endl;
 		std::cout << "int: " << intValue << std::endl;
 		std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;

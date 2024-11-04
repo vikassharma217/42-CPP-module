@@ -1,6 +1,6 @@
-# include "Base.hpp"
+#include "Base.hpp"
 
 Base::~Base()
 {
-    std::cout << "Base desturctor." << std::endl;
+	// std::cout << "Base destructor." << std::endl;
 }
