@@ -8,7 +8,7 @@
 # include <stdexcept>
 
 /*tempalte declaration*/
-template <typename T>
+template <typename T> 
 typename T::iterator  easyfind(T& param1, int param2);
 
 # include "easyfind.tpp"

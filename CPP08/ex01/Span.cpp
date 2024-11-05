@@ -64,7 +64,7 @@ void Span::addMany(const std::vector<int>& newNum)
 /*func to return the lonest span, we need to return the diffrence between 
     largest to smallest number*/
 
-int Span::longestSpan()
+long Span::longestSpan()
 {
     if (numVector.size() < 2)
     {
@@ -72,12 +72,12 @@ int Span::longestSpan()
     }
     int smallestNum = *std::min_element(numVector.begin(), numVector.end());
     int largestNum = *std::max_element(numVector.begin(), numVector.end());
-    return (largestNum - smallestNum);
+    return (static_cast<long>(largestNum) - static_cast<long>(smallestNum));
 } 
 
 /*func to return the shortest span between any two numbers, we need to return the 
     smallest diffrence between any two numbers */
-int Span::shortestSpan()
+long Span::shortestSpan()
 {
     if (numVector.size() < 2)
     {
@@ -85,10 +85,10 @@ int Span::shortestSpan()
     }
     std::vector<int> sortedVec = numVector;
     std::sort(sortedVec.begin(), sortedVec.end());
-    int minDiff = 2147483647;
+    long minDiff = std::numeric_limits<long>::max();
     for (size_t i = 1; i < sortedVec.size(); ++i)
     {
-        int diff = sortedVec[i] - sortedVec[i - 1];
+        long diff = static_cast<long>(sortedVec[i]) - static_cast<long>(sortedVec[i - 1]);
         minDiff = std::min(minDiff, diff);
     }
     return (minDiff);
