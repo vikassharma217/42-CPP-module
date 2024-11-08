@@ -50,6 +50,10 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "ranges": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "bitset": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "regex": "cpp"
     }
 }

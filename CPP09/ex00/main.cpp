@@ -1,16 +1,32 @@
-# include "BitcoinExchange.hpp"
-# include <iostream>
-# include <map>
-# include <string>
-# include <fstream>
-# include <sstream>
+#include "BitcoinExchange.hpp"
+#include <iostream>
+#include <map>
 
-int main ()
+int main(int argc, char* argv[]) 
 {
-    BitcoinExchange ex1;
-    if (ex1.readData("data.csv"))
+    // Check for correct argument count
+    if (argc != 2) 
     {
-        std::cout << "Date: 2012-09-26: Price: " << ex1.getPrice("2012-09-26") << std::endl;
+        std::cerr << "Error: could not open file." << std::endl;
+        return 1;
     }
-    return (0);
+
+    // Load the database
+    std::map<std::string, float> priceData;
+    if (!loadDatabase("data.csv", priceData)) 
+    {
+        std::cerr << "Error: failed to load database from data.csv." << std::endl;
+        return 1;
+    }
+
+    // Process the input file
+    std::string inputFile = argv[1];
+    if (!validateProcessInput(inputFile, priceData)) 
+    {
+        std::cerr << "Error: failed to process input file " << inputFile << "." << std::endl;
+        return 1;
+    }
+
+    return 0;
 }
+

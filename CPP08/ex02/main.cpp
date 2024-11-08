@@ -60,39 +60,39 @@ int	main(void)
 // }
 
 
-int main() 
-{
-    // Create a MutantStack of integers
-    MutantStack<int> mstack;
+// int main() 
+// {
+//     // Create a MutantStack of integers
+//     MutantStack<int> mstack;
 
-    // Push elements onto the stack
-    mstack.push(5);
-    mstack.push(17);
-    mstack.push(3);
-    mstack.push(42);
-    mstack.push(9);
+//     // Push elements onto the stack
+//     mstack.push(5);
+//     mstack.push(17);
+//     mstack.push(3);
+//     mstack.push(42);
+//     mstack.push(9);
 
-    // Display top element
-    std::cout << "Top element: " << mstack.top() << std::endl;
+//     // Display top element
+//     std::cout << "Top element: " << mstack.top() << std::endl;
 
-    // Pop the top element
-    mstack.pop();
-    std::cout << "Top element after pop: " << mstack.top() << std::endl;
+//     // Pop the top element
+//     mstack.pop();
+//     std::cout << "Top element after pop: " << mstack.top() << std::endl;
 
-    // Iterate using iterators
-    std::cout << "Elements in stack: ";
-    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) 
-    {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+//     // Iterate using iterators
+//     std::cout << "Elements in stack: ";
+//     for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) 
+//     {
+//         std::cout << *it << " ";
+//     }
+//     std::cout << std::endl;
 
-    // Test reverse iteration
-    std::cout << "Elements in reverse order: ";
-    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit) 
-    {
-        std::cout << *rit << " ";
-    }
-    std::cout << std::endl;
-    return (0);
-}
+//     // Test reverse iteration
+//     std::cout << "Elements in reverse order: ";
+//     for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit) 
+//     {
+//         std::cout << *rit << " ";
+//     }
+//     std::cout << std::endl;
+//     return (0);
+// }

@@ -1,31 +1,17 @@
+// BitcoinExchange.hpp
+
 #ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
-# include <iostream>
-# include <map>
-# include <string>
+#include <map>
+#include <string>
 
-class BitcoinExchange
-{
-    public:
-        BitcoinExchange();
-        //BitcoinExchange (const BitcoinExchange &rhs);
-        //BitcoinExchange &operator=(const BitcoinExchange &rhs);
-        ~BitcoinExchange();
+// Function prototypes
+bool loadDatabase(const std::string& dbFilename, std::map<std::string, float>& priceData);
+bool validateProcessInput(const std::string& inputFile, const std::map<std::string, float>& priceData);
+bool isValidDate(const std::string& date);
+bool isQuantityPositive(float quantity);
+bool isQuantityInRange(float quantity);
+float getPriceForDate(const std::string& date, const std::map<std::string, float>& priceData);
 
-    private:
-        // Conataine map to store date and price
-        std::map<std::string, int> priceData;
-
-    public:
-        //method to read the form CSV file and popollate the map
-        bool readData(const std::string& fileName);
-
-        //method to retrive the price on given data
-        int getPrice(const std::string& date) const;
-
-        //print all data
-        void printData() const;
-};
-
-#endif
+#endif // BITCOINEXCHANGE_HPP
