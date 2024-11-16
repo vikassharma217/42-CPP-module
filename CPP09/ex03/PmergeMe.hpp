@@ -16,14 +16,7 @@ class PmergeMe
         void sortInVector(std::vector<int>& inputVec);
         void sortInDeque(std::deque<int>& inputDeq);
 
-        static void printResult(const std::string& label, const std::vector<int>& vec, 
-                                double time, int size);
-        static void printResult(const std::string& label, const std::deque<int>& vec, 
-                                double time, int size);
-
-    private:
-        void mergeNSortVector(std::vector<int>& inputVec, const std::vector<int>& leftVec, const std::vector<int>& rightVec);
-        void mergeNSortDeque(std::deque<int>& inputDeq, const std::deque<int>& leftDeq, const std::deque<int>& rightDeq);
+        static void printSortingTime(const std::string containerName, double time, int size);
 };
 
 #endif

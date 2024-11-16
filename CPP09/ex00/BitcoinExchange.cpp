@@ -7,7 +7,7 @@
 // Loads the database from data.csv
 bool loadDatabase(const std::string& dbFilename, std::map<std::string, float>& priceData) 
 {
-    std::ifstream file(dbFilename);
+    std::ifstream file(dbFilename.c_str());
     if (!file.is_open()) 
     {
         std::cerr << "Error: could not open file " << dbFilename << std::endl;
@@ -41,7 +41,7 @@ bool isValidDate(const std::string& date)
 {
     if (date.size() != 10 || date[4] != '-' || date[7] != '-') 
     {
-        return false;
+        return (false);
     }
 
     int year, month, day;
@@ -51,7 +51,7 @@ bool isValidDate(const std::string& date)
 
     if (!(yearStream >> year) || !(monthStream >> month) || !(dayStream >> day)) 
     {
-        return false;
+        return (false);
     }
 
     // Basic range checking for month and day
@@ -59,7 +59,7 @@ bool isValidDate(const std::string& date)
     {
         return false;
     }
-    // Additional logic for days per month can be added here if needed
+    // max days in month 
     int daysMonthwise[] = {31,(handleLeapYear(year) ? 29 : 28), 31,30,31,30,31,31,30,31,30,31};
     return (day <= daysMonthwise[month - 1]);
 }
@@ -67,13 +67,13 @@ bool isValidDate(const std::string& date)
 // Checks if quantity is positive
 bool isQuantityPositive(float quantity) 
 {
-    return quantity > 0;
+    return (quantity > 0);
 }
 
 // Checks if quantity is within the range [0, 1000]
 bool isQuantityInRange(float quantity) {
 
-    return quantity <= 1000;
+    return (quantity <= 1000);
 }
 
 // Finds the closest date for a given date in the database
@@ -84,7 +84,7 @@ float getPriceForDate(const std::string& date, const std::map<std::string, float
     {
         if (it == priceData.begin()) 
         {
-            return (-1); // No valid date found
+            return (-1.0f); // No valid date found
         }
         --it; // Use closest previous date
     }
@@ -94,11 +94,11 @@ float getPriceForDate(const std::string& date, const std::map<std::string, float
 // Main function to validate, process input, and calculate the result
 bool validateProcessInput(const std::string& inputFile, const std::map<std::string, float>& priceData) 
 {
-    std::ifstream file(inputFile);
+    std::ifstream file(inputFile.c_str());
     if (!file.is_open()) 
     {
         std::cerr << "Error: could not open file." << std::endl;
-        return false;
+        return (false);
     }
 
     std::string line, date;
@@ -107,7 +107,8 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
     while (std::getline(file, line)) 
     {
         // Check and skip the header line
-        if (isFirstLine) {
+        if (isFirstLine) 
+        {
             if (line == "date | value") 
             {
                 isFirstLine = false;
@@ -123,9 +124,15 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
         std::stringstream ss(line);
         if (std::getline(ss, date, '|') && ss >> quantity) 
         {
-            // Trim whitespace around date
-            date.erase(date.find_last_not_of(" \n\r\t") + 1);
-            date.erase(0, date.find_first_not_of(" \n\r\t"));
+             // Trim whitespace around date
+            size_t start = date.find_first_not_of(" \n\r\t");
+            size_t end = date.find_last_not_of(" \n\r\t");
+            if (start == std::string::npos || end == std::string::npos) 
+            {
+                std::cerr << "Error: bad input => " << date << std::endl;
+                continue;
+            }
+            date = date.substr(start, end - start + 1);
 
             // Validate the date format
             if (!isValidDate(date)) 
@@ -142,13 +149,13 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
             }
             if (!isQuantityInRange(quantity)) 
             {
-                std::cerr << "Error: too large a number." << std::endl;
+                std::cerr << "Error: Max quantity is 1000." << std::endl;
                 continue;
             }
 
             // Retrieve the price and print the result
             float price = getPriceForDate(date, priceData);
-            if (price == -1) 
+            if (price == -1.0f) 
             {
                 std::cerr << "Error: no price available for date " << date << std::endl;
                 continue;

@@ -28,31 +28,9 @@ PmergeMe::~PmergeMe()
 }
 
 /*print sorted vector and time to sort*/
-void PmergeMe::printResult(const std::string& label, const std::vector<int>& vec, 
-                    double time, int size) 
+void PmergeMe::printSortingTime(const std::string containerName, double time, int size) 
 {
-    std::cout << label << ": ";
-    for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); ++it) 
-    {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
     std::cout << "Time to process a range of " << size 
-              << " element with std::vector: " << std::fixed
-              << std::setprecision(5) << time << " us" << std::endl;
-}
-
-/*print sorted deque and time to sort*/
-void PmergeMe::printResult(const std::string& label, const std::deque<int>& deq, 
-                    double time, int size) 
-{
-    std::cout << label << ": ";
-    for (std::deque<int>::const_iterator it = deq.begin(); it != deq.end(); ++it) 
-    {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Time to process a range of " << size 
-              << " element with std::deque: " << std::fixed
+              << " element with " << containerName << std::fixed
               << std::setprecision(5) << time << " us" << std::endl;
 }

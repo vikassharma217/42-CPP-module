@@ -3,7 +3,7 @@
 
 
 /*helper function: merge and sort for vector*/
-void PmergeMe::mergeNSortVector(std::vector<int>& inputVec, const std::vector<int>& leftVec, const std::vector<int>& rightVec) 
+void mergeNSortVector(std::vector<int>& inputVec, const std::vector<int>& leftVec, const std::vector<int>& rightVec) 
 {
     size_t i = 0, j = 0, k = 0;
     while (i < leftVec.size() && j < rightVec.size()) 
@@ -44,7 +44,7 @@ void PmergeMe::sortInVector(std::vector<int>& inputVec)
 }
 
 /*helper function: merge and sort for deque*/
-void PmergeMe::mergeNSortDeque(std::deque<int>& inputDeq, const std::deque<int>& leftDeq, const std::deque<int>& rightDeq) 
+void mergeNSortDeque(std::deque<int>& inputDeq, const std::deque<int>& leftDeq, const std::deque<int>& rightDeq) 
 {
     size_t i = 0, j = 0, k = 0;
     while (i < leftDeq.size() && j < rightDeq.size()) 
