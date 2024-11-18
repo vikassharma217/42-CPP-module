@@ -7,26 +7,27 @@
 // Loads the database from data.csv
 bool loadDatabase(const std::string& dbFilename, std::map<std::string, float>& priceData) 
 {
-    std::ifstream file(dbFilename.c_str());
-    if (!file.is_open()) 
+    std::ifstream dataFile(dbFilename.c_str());
+    if (!dataFile.is_open()) 
     {
         std::cerr << "Error: could not open file " << dbFilename << std::endl;
-        return false;
+        return (false);
     }
 
     std::string line;
-    while (std::getline(file, line)) 
+    while (std::getline(dataFile, line)) 
     {
+        //std::cout << line; 
         std::stringstream ss(line);
         std::string date;
         float price;
-        if (std::getline(ss, date, ',') && ss >> price) 
+        if (std::getline(ss, date, ',') && ss >> price)  // getline() delimited by ,
         {
-            priceData[date] = price;
+            priceData[date] = price; // store the data in map[key] = value
         }
     }
-    file.close();
-    return true;
+    dataFile.close();
+    return (true);
 }
 
 /*leap year either (divisible by 400) or (divisibile by 4 but not by 100) */
@@ -40,25 +41,17 @@ bool handleLeapYear(int year)
 bool isValidDate(const std::string& date) 
 {
     if (date.size() != 10 || date[4] != '-' || date[7] != '-') 
-    {
         return (false);
-    }
-
     int year, month, day;
     std::istringstream yearStream(date.substr(0, 4));
     std::istringstream monthStream(date.substr(5, 2));
     std::istringstream dayStream(date.substr(8, 2));
 
     if (!(yearStream >> year) || !(monthStream >> month) || !(dayStream >> day)) 
-    {
         return (false);
-    }
-
     // Basic range checking for month and day
     if (month < 1 || month > 12 || day < 1) 
-    {
-        return false;
-    }
+        return (false);
     // max days in month 
     int daysMonthwise[] = {31,(handleLeapYear(year) ? 29 : 28), 31,30,31,30,31,31,30,31,30,31};
     return (day <= daysMonthwise[month - 1]);
@@ -117,7 +110,7 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
             else 
             {
                 std::cerr << "Error: bad input format => " << line << std::endl;
-                return false;
+                return (false);
             }
         }
 
@@ -129,7 +122,7 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
             size_t end = date.find_last_not_of(" \n\r\t");
             if (start == std::string::npos || end == std::string::npos) 
             {
-                std::cerr << "Error: bad input => " << date << std::endl;
+                std::cerr << "Error: bad input => " << std::endl;
                 continue;
             }
             date = date.substr(start, end - start + 1);
@@ -163,10 +156,8 @@ bool validateProcessInput(const std::string& inputFile, const std::map<std::stri
             std::cout << date << " => " << quantity << " = " << (quantity * price) << std::endl;
         } 
         else 
-        {
             std::cerr << "Error: bad input format => " << line << std::endl;
-        }
     }
     file.close();
-    return true;
+    return (true);
 }
