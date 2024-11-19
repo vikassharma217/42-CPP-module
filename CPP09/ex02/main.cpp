@@ -3,7 +3,7 @@
 #include <vector>
 #include <deque>
 #include <cstdlib>
-#include <ctime>
+#include <ctime> // for clock function
 
 /*validate the input; must be digit, skip the first '-', check for emty input "" or " "*/
 bool isValidInput(const char* str) 
@@ -38,13 +38,13 @@ int main(int argc, char** argv)
             if (!isValidInput(argv[i])) 
             {
                 std::cerr << "Error: Input should be digit only." << std::endl;
-                return 1;
+                return (1);
             }
             int num = std::atoi(argv[i]);
             if (num <= 0)
             {
                 std::cerr << "Error: Input must be a positive integer." << std::endl;
-                return 1;
+                return (1);
             }
             inputVec.push_back(num);
             inputDeq.push_back(num);
@@ -62,9 +62,12 @@ int main(int argc, char** argv)
 
     // Sort vector
     clock_t start = clock();
+    std::cout  << start << std::endl;
     s1.sortInVector(inputVec);
     clock_t stop = clock();
+    std::cout  << stop << std::endl;
     double vectorTime = static_cast<double>(stop - start) / CLOCKS_PER_SEC * 1e6;
+    std::cout << CLOCKS_PER_SEC << std::endl;
 
     // Sort deque
     start = clock();
@@ -80,8 +83,16 @@ int main(int argc, char** argv)
     }
     std::cout << std::endl;
 
+    //  /*print the sorted container*/
+    // std::cout << "After: ";
+    // for (std::deque<int>::iterator it = inputDeq.begin(); it != inputDeq.end(); ++it)
+    // {
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << std::endl;
+
     
     s1.printSortingTime("std::vector: ", vectorTime, inputVec.size());
     s1.printSortingTime("std::deque: ", dequeTime, inputDeq.size());
-    return 0;
+    return (0);
 }
