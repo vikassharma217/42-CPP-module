@@ -1,13 +1,11 @@
 # include "RPN.hpp"
+# include <iostream>
+# include <sstream>
+# include <stack>
+# include <string>
+# include <cctype>
 
-#include "RPN.hpp"
-#include <iostream>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <cctype>
-
-bool isValidInput(const std::string& input) 
+bool isValidInput(const std::string input) 
 {
     std::istringstream tokens(input);
     std::string tok;
@@ -48,7 +46,7 @@ bool isValidInput(const std::string& input)
 }
 
 
-float excuteRPN(const std::string& input)
+bool excuteRPN(const std::string& input, float& result)
 {
     std::stack<float> rpnStack;
     std::istringstream tokens(input);
@@ -75,13 +73,14 @@ float excuteRPN(const std::string& input)
                 if (num1 == 0)
                 {
                     std::cerr << "Error: Division by zero." << std::endl;
-                    //return (0);
+                    return (false);
                 }
                 rpnStack.push(num2 / num1);
             }
         }
     }
-    return (rpnStack.top());
+    result = rpnStack.top();
+    return (true);
 }
 
 

@@ -16,7 +16,11 @@ int main (int argc, char** argv)
     {
         return (1);
     }
-    float result = excuteRPN(input);
+    float result;
+    if(!excuteRPN(input, result))
+    {
+        return (1);
+    }
     std::cout << "Result: " << result << std::endl;
     return (0);
 }

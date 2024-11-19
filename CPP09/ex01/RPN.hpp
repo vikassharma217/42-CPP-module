@@ -6,7 +6,7 @@
 # include <sstream>
 # include <string>
 
-bool isValidInput(const std::string& input);
-float excuteRPN(const std::string& input);
+bool isValidInput(const std::string input);
+bool excuteRPN(const std::string& input, float& result);
 
 #endif
