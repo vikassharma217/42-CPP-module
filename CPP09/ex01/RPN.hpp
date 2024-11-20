@@ -2,11 +2,11 @@
 # define RPN_HPP
 
 # include <iostream>
-# include <stack>
 # include <sstream>
+# include <stack>
 # include <string>
 
-bool isValidInput(const std::string input);
-bool excuteRPN(const std::string& input, float& result);
+bool	isValidInput(const std::string input);
+bool	excuteRPN(const std::string &input, float &result);
 
 #endif
