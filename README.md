@@ -6,45 +6,45 @@ Modules Overview
 
 CPP Module 00: Introduction to C++
 
-  Basics of syntax, compilation, and namespaces.
+    Basics of syntax, compilation, and namespaces.
 
-  Writing simple programs and using Makefiles.
+    Writing simple programs and using Makefiles.
 
 CPP Module 01: Memory Allocation and References
 
-  Stack vs. heap memory, references, and basic memory management.
+    Stack vs. heap memory, references, and basic memory management.
 
 CPP Module 02: Polymorphism and Operator Overloading
 
-  Operator overloading and ad-hoc polymorphism.
+    Operator overloading and ad-hoc polymorphism.
 
 CPP Module 03: Inheritance
 
-  Class hierarchies, abstract classes, and virtual functions.
+    Class hierarchies, abstract classes, and virtual functions.
 
 CPP Module 04: Abstract Classes and Polymorphism
 
-  Designing abstract classes and implementing dynamic memory management.
+    Designing abstract classes and implementing dynamic memory management.
 
 CPP Module 05: Exception Handling
 
-  Writing resilient code with try, catch, and throw.
+    Writing resilient code with try, catch, and throw.
 
 CPP Module 06: Casting
 
-  Understanding static, dynamic, const, and reinterpret casts.
+    Understanding static, dynamic, const, and reinterpret casts.
 
 CPP Module 07: Templates
 
-  Writing flexible class and function templates.
+    Writing flexible class and function templates.
 
 CPP Module 08: Templated Containers
 
-  Designing STL-like containers and iterators.
+    Designing STL-like containers and iterators.
 
 CPP Module 09: Advanced Concepts
 
-  Inter-module communication, std::move, and performance optimization.
+    Inter-module communication, std::move, and performance optimization.
 
 
 Getting Started
